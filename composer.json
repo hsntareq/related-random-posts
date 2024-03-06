@@ -1,0 +1,17 @@
+{
+    "name": "hasan/learn-plugin",
+    "description": "This is a learining plugin of wordpress.",
+    "autoload": {
+        "psr-4": {
+            "RelatedRandomPosts\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hasan Tareq",
+            "email": "hsntareq@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
