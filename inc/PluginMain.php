@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * PluginMain Class
+ */
 final class PluginMain {
 
 	/**
@@ -24,7 +27,7 @@ final class PluginMain {
 	 *
 	 * @var string
 	 */
-	const version = '1.0';
+	const PLUGIN_VERSION = '1.0';
 
 	/**
 	 * Instance of the PluginMain class
@@ -34,15 +37,17 @@ final class PluginMain {
 	private static $instance = null;
 
 	/**
-	 * Class constructor (private to enforce singleton pattern)
+	 * Class constructor (private to enforce singleton pattern).
+	 *
+	 * @return void
 	 */
 	private function __construct() {
-		// Do initialization here
+		// All the initialization tasks.
 		$this->register_hooks();
 	}
 
 	/**
-	 * Get the singleton instance of PluginMain
+	 * Get the singleton instance of PluginMain.
 	 *
 	 * @return PluginMain
 	 */
@@ -55,7 +60,7 @@ final class PluginMain {
 	}
 
 	/**
-	 * Register hooks and do other setup tasks
+	 * Register hooks and do other setup tasks.
 	 */
 	private function register_hooks() {
 
@@ -66,14 +71,19 @@ final class PluginMain {
 	}
 
 	/**
-	 * Initialize the plugin
+	 * Initialize classes to the plugin.
+	 * This method will run after the plugins_loaded action has been fired.
+	 * This is a good place to include files and instantiate classes.
+	 * This method is called by the register_hooks method.
+	 *
+	 * @return void
 	 */
 	public function init_plugin() {
-		// Defining plugin constants
+		// Defining plugin constants.
 		$this->define_constants();
 
-		// Instantiate the Related_Random_Posts class
-		Related\RendomPosts::get_instance();
+		// Instantiate the Related_Random_Posts class.
+		Related\RandomPosts::get_instance();
 	}
 
 	/**
@@ -82,14 +92,13 @@ final class PluginMain {
 	private function define_constants() {
 
 		/**
-		 * Check if the RRP_PLUGIN_VERSION constant is defined and if not, define it with the value of the 'version' property of the LearnPlugin class.
+		 * Check if the RRP_PLUGIN_VERSION constant is defined and if not, define it with the value of the 'PLUGIN_VERSION' property of the PluginMain class.
 		 */
 		if ( ! defined( 'RRP_PLUGIN_VERSION' ) ) {
-			define( 'RRP_PLUGIN_VERSION', self::version );
+			define( 'RRP_PLUGIN_VERSION', self::PLUGIN_VERSION );
 		}
 		/**
-		 * Define the constant RRP_PLUGIN_PATH if it is not already defined.
-		 * The constant represents the path to the Learn Plugin directory.
+		 * The constant represents the path to the Plugin directory.
 		 * It is defined as the plugin directory path without the trailing slash.
 		 */
 		if ( ! defined( 'RRP_PLUGIN_PATH' ) ) {
@@ -97,9 +106,7 @@ final class PluginMain {
 		}
 
 		/**
-		 * Define the constant RRP_PLUGIN_URL if it is not already defined.
-		 *
-		 * @since 1.0.0
+		 * RRP_PLUGIN_URL is defined as the URL for the plugin directory.
 		 */
 		if ( ! defined( 'RRP_PLUGIN_URL' ) ) {
 			define( 'RRP_PLUGIN_URL', untrailingslashit( plugin_dir_url( RRP_PLUGIN_FILE ) ) );

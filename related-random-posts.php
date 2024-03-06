@@ -20,13 +20,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! defined( 'RRP_PLUGIN_FILE' ) ) {
 	define( 'RRP_PLUGIN_FILE', __FILE__ );
 }
-// return;
-// echo RRP_PLUGIN_FILE;
 
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
+/**
+ * FILEPATH: /wp-content/plugins/related-random-posts/related-random-posts.php
+ *
+ * Initializes the Related Random Posts plugin by creating an instance of the PluginMain class.
+ *
+ * @since 1.0.0
+ */
 \RelatedRandomPosts\PluginMain::get_instance();
 
 
