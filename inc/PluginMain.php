@@ -59,8 +59,8 @@ final class PluginMain {
 	 */
 	private function register_hooks() {
 
-		register_activation_hook( LEARN_PLUGIN_FILE, array( $this, 'activate' ) );
-		register_deactivation_hook( LEARN_PLUGIN_FILE, array( $this, 'deactivate' ) );
+		register_activation_hook( RRP_PLUGIN_FILE, array( $this, 'activate' ) );
+		register_deactivation_hook( RRP_PLUGIN_FILE, array( $this, 'deactivate' ) );
 
 		add_action( 'plugins_loaded', array( $this, 'init_plugin' ) );
 	}
@@ -73,7 +73,7 @@ final class PluginMain {
 		$this->define_constants();
 
 		// Instantiate the Related_Random_Posts class
-		Related_Random_Posts::get_instance();
+		Related\RendomPosts::get_instance();
 	}
 
 	/**
@@ -82,37 +82,37 @@ final class PluginMain {
 	private function define_constants() {
 
 		/**
-		 * Check if the LEARN_PLUGIN_VERSION constant is defined and if not, define it with the value of the 'version' property of the LearnPlugin class.
+		 * Check if the RRP_PLUGIN_VERSION constant is defined and if not, define it with the value of the 'version' property of the LearnPlugin class.
 		 */
-		if ( ! defined( 'LEARN_PLUGIN_VERSION' ) ) {
-			define( 'LEARN_PLUGIN_VERSION', self::version );
+		if ( ! defined( 'RRP_PLUGIN_VERSION' ) ) {
+			define( 'RRP_PLUGIN_VERSION', self::version );
 		}
 		/**
-		 * Define the constant LEARN_PLUGIN_PATH if it is not already defined.
+		 * Define the constant RRP_PLUGIN_PATH if it is not already defined.
 		 * The constant represents the path to the Learn Plugin directory.
 		 * It is defined as the plugin directory path without the trailing slash.
 		 */
-		if ( ! defined( 'LEARN_PLUGIN_PATH' ) ) {
-			define( 'LEARN_PLUGIN_PATH', untrailingslashit( plugin_dir_path( LEARN_PLUGIN_FILE ) ) );
+		if ( ! defined( 'RRP_PLUGIN_PATH' ) ) {
+			define( 'RRP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( RRP_PLUGIN_FILE ) ) );
 		}
 
 		/**
-		 * Define the constant LEARN_PLUGIN_URL if it is not already defined.
+		 * Define the constant RRP_PLUGIN_URL if it is not already defined.
 		 *
 		 * @since 1.0.0
 		 */
-		if ( ! defined( 'LEARN_PLUGIN_URL' ) ) {
-			define( 'LEARN_PLUGIN_URL', untrailingslashit( plugin_dir_url( LEARN_PLUGIN_FILE ) ) );
+		if ( ! defined( 'RRP_PLUGIN_URL' ) ) {
+			define( 'RRP_PLUGIN_URL', untrailingslashit( plugin_dir_url( RRP_PLUGIN_FILE ) ) );
 		}
 
 		/**
-		 * Define the constant LEARN_PLUGIN_ASSETS if it is not already defined.
-		 * LEARN_PLUGIN_ASSETS is the URL for the assets directory of the Learn Plugin.
+		 * Define the constant RRP_PLUGIN_ASSETS if it is not already defined.
+		 * RRP_PLUGIN_ASSETS is the URL for the assets directory of the Learn Plugin.
 		 *
 		 * @since 1.0.0
 		 */
-		if ( ! defined( 'LEARN_PLUGIN_ASSETS' ) ) {
-			define( 'LEARN_PLUGIN_ASSETS', LEARN_PLUGIN_URL . '/assets' );
+		if ( ! defined( 'RRP_PLUGIN_ASSETS' ) ) {
+			define( 'RRP_PLUGIN_ASSETS', RRP_PLUGIN_URL . '/assets' );
 		}
 	}
 
@@ -121,21 +121,21 @@ final class PluginMain {
 	 */
 	public function activate() {
 
-		$installed = get_option( 'learn_plugin_installed' );
+		$installed = get_option( 'rrp_plugin_installed' );
 
 		if ( ! $installed ) {
-			update_option( 'learn_plugin_installed', time() );
+			update_option( 'rrp_plugin_installed', time() );
 		}
 
-		update_option( 'learn_plugin_version', self::version );
+		update_option( 'rrp_plugin_version', self::version );
 	}
 	/**
 	 * Run code when the plugin is activated
 	 */
 	public function deactivate() {
 
-		delete_option( 'learn_plugin_installed' );
-		delete_option( 'learn_plugin_version' );
+		delete_option( 'rrp_plugin_installed' );
+		delete_option( 'rrp_plugin_version' );
 	}
 }
 
