@@ -5,7 +5,7 @@
  * Version: 1.0
  * Author: Shamsun Naher
  * Author URI: https://www.traversymedia.com
- * License: GPLv2 or later
+ * License: GPLv2.0 or later
  *
  * @package wp-plugin
  * @since 1.0
@@ -92,7 +92,7 @@ final class PluginMain {
 	private function define_constants() {
 
 		/**
-		 * Check if the RRP_PLUGIN_VERSION constant is defined and if not, define it with the value of the 'PLUGIN_VERSION' property of the PluginMain class.
+		 * This RRP_PLUGIN_VERSION constant is defined 'PLUGIN_VERSION' property of the PluginMain class.
 		 */
 		if ( ! defined( 'RRP_PLUGIN_VERSION' ) ) {
 			define( 'RRP_PLUGIN_VERSION', self::PLUGIN_VERSION );
@@ -145,6 +145,3 @@ final class PluginMain {
 		delete_option( 'rrp_plugin_version' );
 	}
 }
-
-
-
