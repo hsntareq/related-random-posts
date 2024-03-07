@@ -13,6 +13,8 @@
 
 namespace RelatedRandomPosts;
 
+use RelatedRandomPosts\Related\RandomPosts;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -82,8 +84,8 @@ final class PluginMain {
 		// Defining plugin constants.
 		$this->define_constants();
 
-		// Instantiate the Related_Random_Posts class.
-		Related\RandomPosts::get_instance();
+		// Instantiate the RandomPosts class.
+		RandomPosts::get_instance();
 	}
 
 	/**
@@ -91,33 +93,22 @@ final class PluginMain {
 	 */
 	private function define_constants() {
 
-		/**
-		 * This RRP_PLUGIN_VERSION constant is defined 'PLUGIN_VERSION' property of the PluginMain class.
-		 */
+		// This RRP_PLUGIN_VERSION constant is defined 'PLUGIN_VERSION' property of the PluginMain class.
 		if ( ! defined( 'RRP_PLUGIN_VERSION' ) ) {
 			define( 'RRP_PLUGIN_VERSION', self::PLUGIN_VERSION );
 		}
-		/**
-		 * The constant represents the path to the Plugin directory.
-		 * It is defined as the plugin directory path without the trailing slash.
-		 */
+
+		// It is defined as the plugin directory path without the trailing slash.
 		if ( ! defined( 'RRP_PLUGIN_PATH' ) ) {
 			define( 'RRP_PLUGIN_PATH', untrailingslashit( plugin_dir_path( RRP_PLUGIN_FILE ) ) );
 		}
 
-		/**
-		 * RRP_PLUGIN_URL is defined as the URL for the plugin directory.
-		 */
+		// RRP_PLUGIN_URL is defined as the URL for the plugin directory.
 		if ( ! defined( 'RRP_PLUGIN_URL' ) ) {
 			define( 'RRP_PLUGIN_URL', untrailingslashit( plugin_dir_url( RRP_PLUGIN_FILE ) ) );
 		}
 
-		/**
-		 * Define the constant RRP_PLUGIN_ASSETS if it is not already defined.
-		 * RRP_PLUGIN_ASSETS is the URL for the assets directory of the Learn Plugin.
-		 *
-		 * @since 1.0.0
-		 */
+		// RRP_PLUGIN_ASSETS is the URL for the assets directory of the Learn Plugin.
 		if ( ! defined( 'RRP_PLUGIN_ASSETS' ) ) {
 			define( 'RRP_PLUGIN_ASSETS', RRP_PLUGIN_URL . '/assets' );
 		}
@@ -134,7 +125,7 @@ final class PluginMain {
 			update_option( 'rrp_plugin_installed', time() );
 		}
 
-		update_option( 'rrp_plugin_version', self::version );
+		update_option( 'rrp_plugin_version', self::PLUGIN_VERSION );
 	}
 	/**
 	 * Run code when the plugin is activated
