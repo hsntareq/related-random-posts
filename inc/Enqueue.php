@@ -1,18 +1,17 @@
 <?php
 /**
- * Frontend Class
- * version 1.0
+ * Enqueue Class
  *
  * @package wp-plugin
  * @since 1.0
  */
 
-namespace RelatedRandomPosts\Related;
+namespace RelatedRandomPosts;
 
 /**
- * RandomPosts Class.
+ * Enqueue Class.
  */
-class RandomPosts {
+class Enqueue {
 	/**
 	 * $instance
 	 *
@@ -30,9 +29,9 @@ class RandomPosts {
 	/**
 	 * The instance of this class.
 	 *
-	 * @return RandomPosts
+	 * @return Enqueue
 	 */
-	public static function get_instance(): RandomPosts {
+	public static function get_instance(): Enqueue {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}

@@ -2,18 +2,12 @@
 /**
  * Plugin File: Related Random Posts
  * Description: This plugin will show related random posts under each post.
- * Version: 1.0
- * Author: Shamsun Naher
- * Author URI: https://www.traversymedia.com
- * License: GPLv2.0 or later
  *
  * @package wp-plugin
  * @since 1.0
  */
 
 namespace RelatedRandomPosts;
-
-use RelatedRandomPosts\Related\RandomPosts;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -83,6 +77,9 @@ final class PluginMain {
 	public function init_plugin() {
 		// Defining plugin constants.
 		$this->define_constants();
+
+		// Instentiate Asset Enqueue class.
+		Enqueue::get_instance();
 
 		// Instantiate the RandomPosts class.
 		RandomPosts::get_instance();
