@@ -38,24 +38,19 @@ class RandomPosts {
 		add_filter( 'post_thumbnail_html', array( $this, 'rrp_post_thumbnail_fallback' ) );
 		add_filter( 'excerpt_length', array( $this, 'rrp_custom_excerpt_length' ) );
 		add_filter( 'rendom_post_thumb_size', array( $this, 'rrp_rendom_post_thumb_size' ) );
-		// add_filter( 'rendom_post_count', array( $this, 'rrp_rendom_post_count' ) );
-		// add_filter( 'rrp_excerpt', $this->rrp_custom_excerpt_length() );
+		add_filter( 'rrp_excerpt_text', array( $this, 'rrp_excerpt_text_callback' ) );
+		add_filter( 'rrp_post_number', array( $this, 'rrp_rendom_post_count' ) );
 	}
 
-	function __rrp_custom_excerpt_length( $text = '' ) {
-		$raw_excerpt = $text;
-		if ( '' == $text ) {
-			$text = get_the_content( '' );
-
-			$text = strip_shortcodes( $text );
-
-			$text           = apply_filters( 'the_content', $text );
-			$text           = str_replace( ']]>', ']]&gt;', $text );
-			$excerpt_length = apply_filters( 'excerpt_length', 55 );
-			$excerpt_more   = apply_filters( 'excerpt_more', ' ' . '[...]' );
-			$text           = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-		}
-		return apply_filters( 'wp_trim_excerpt', $text, $raw_excerpt );
+	/**
+	 * Excerpt text callback.
+	 *
+	 * @param mixed $excerpt Excerpt text.
+	 *
+	 * @return string
+	 */
+	public function rrp_excerpt_text_callback( $excerpt ) {
+		return wp_trim_words( $excerpt, 10, '...' );
 	}
 
 	/**
@@ -72,7 +67,7 @@ class RandomPosts {
 	 *
 	 * @return int
 	 */
-	public function rrp_rendom_post_count() {
+	public function rrp_rendom_post_count() { //rrp_post_number
 		return wp_rand( 2, 5 );
 	}
 
@@ -114,7 +109,7 @@ class RandomPosts {
 		$args            = array(
 			'category__in'   => $post_categories,
 			'post__not_in'   => array( get_the_ID() ),
-			'posts_per_page' => wp_rand( 2, 5 ),
+			'posts_per_page' => apply_filters( 'rrp_post_number', 2 ),
 			'orderby'        => 'rand',
 		);
 		$related_posts   = new \WP_Query( $args );
@@ -128,7 +123,7 @@ class RandomPosts {
 	 * @return string
 	 */
 	public function rrp_get_related_posts_html( $content, $related_posts ) {
-		$html  = $content;
+		$html = $content;
 		$html .= '<div class="rrp-wrap">';
 		$html .= '<div class="rrp-block-title">';
 		$html .= '<h2>' . __( 'Related Posts', 'rendom-post' ) . '</h2>';
@@ -144,7 +139,9 @@ class RandomPosts {
 				$html .= '</a></div>';
 				$html .= '<div class="rrp-content">';
 				$html .= '<h5 class="rrp-title"><a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h5>';
-				$html .= '<div class="rrp-excerpt">' . get_the_excerpt() . '</div>';
+				$html .= '<div class="rrp-excerpt">';
+				$html .= apply_filters( 'rrp_excerpt_text', get_the_excerpt() );
+				$html .= '</div>';
 				$html .= '</div>';
 				$html .= '</div>';
 			}
