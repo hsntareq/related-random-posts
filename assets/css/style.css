@@ -1,3 +1,162 @@
-img {
-	max-width: 100%;
+.rrp-wrap {}
+
+.rrp-block-title h2 {
+	margin-block-end: 20px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.rrp-block-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.rrp-thumb {
+	width: 150px;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.rrp-thumb figure {
+	min-height: 100%;
+}
+
+.rrp-thumb img {
+	min-width: 100%;
+	height: auto;
+	/* border-top-left-radius: 20px; */
+	/* border-bottom-left-radius: 20px; */
+}
+
+.rrp-thumb a {
+	display: block;
+	font-size: 0;
+}
+
+.rrp-content {
+	flex: 1;
+	overflow: hidden;
+	padding-inline: 20px;
+}
+
+.rrp-item {
+	/* border-radius: 20px; */
+	border: 1px solid #efefef;
+	display: flex;
+	align-items: center;
+	margin-block-end: 20px;
+	position: relative;
+}
+
+.rrp-item::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	background-color: #efefef;
+	z-index: -1;
+	/* border-top-right-radius: 20px; */
+	/* border-bottom-right-radius: 20px; */
+	transition: ease-in-out 500ms;
+}
+
+
+.rrp-item:hover::after {
+	width: 100%;
+}
+
+.rrp-item .rrp-thumb .grid {
+	display: none;
+}
+
+.rrp-item .rrp-title {
+	margin-block-start: 0;
+	margin-block-end: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.rrp-item .rrp-title a {
+	/* display: block; */
+}
+
+
+.rrp-posts.grid .rrp-item .rrp-title a {
+	display: inline-block;
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+}
+
+.rrp-posts.grid .rrp-item::after {
+	width: 100%;
+	height: 0;
+}
+
+.rrp-posts.grid .rrp-item:hover::after {
+	height: 100%;
+}
+
+.rrp-posts.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+}
+
+.rrp-posts.grid .rrp-thumb a {
+	min-width: 100%;
+}
+
+.rrp-posts.grid .rrp-item {
+	flex-direction: column;
+}
+
+.rrp-posts * {
+	transition: all 100ms;
+}
+
+.rrp-posts.grid .rrp-item .rrp-thumb {
+	width: 100%;
+}
+
+.rrp-posts.grid .rrp-item .rrp-thumb .list {
+	display: none;
+}
+
+.rrp-posts.grid .rrp-content {
+	padding-block: 20px;
+}
+
+.rrp-posts.grid .rrp-item .rrp-thumb .grid {
+	display: block;
+}
+
+
+
+.rrp-toggler {
+	width: 36px;
+	height: 32px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	background-color: #efefef;
+	transition: all 300ms;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url(../images/list.svg);
+}
+
+.rrp-toggler.grid {
+	background-image: url(../images/grid.svg);
+}
+
+.rrp-toggler:hover {
+	background-color: #dddddd;
 }
