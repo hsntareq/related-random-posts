@@ -80,8 +80,6 @@ final class PluginMain {
 
 		// Instentiate Asset Enqueue class.
 		Enqueue::get_instance();
-		// Instentiate Asset Enqueue class.
-		Options::get_instance();
 
 		// Instantiate the RandomPosts class.
 		RandomPosts::get_instance();
