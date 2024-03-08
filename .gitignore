@@ -7,3 +7,4 @@ node_modules
 # ignore all build files
 build
 dist
+*.zip
