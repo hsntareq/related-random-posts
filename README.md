@@ -8,7 +8,8 @@ To install the plugin, follow these steps:
 
 1. Download the plugin files from the [GitHub repository](https://github.com/hsntareq/related-random-posts/archive/refs/heads/master.zip).
 2. Upload the plugin files to the `/wp-content/plugins/related-random-posts/` directory on your WordPress installation.
-3. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Run `composer dump-autoload` to active autoloading.
+4. Activate the plugin through the 'Plugins' menu in WordPress.
 
 ## Usage
 
