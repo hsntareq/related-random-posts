@@ -67,7 +67,8 @@ class RandomPosts {
 	 *
 	 * @return int
 	 */
-	public function rrp_rendom_post_count() { //rrp_post_number
+	public function rrp_rendom_post_count() {
+		// Rendom number of posts.
 		return wp_rand( 2, 5 );
 	}
 
@@ -106,10 +107,11 @@ class RandomPosts {
 	 */
 	public function rrp_get_related_posts() {
 		$post_categories = wp_get_post_categories( get_the_ID(), array( 'fields' => 'ids' ) );
+		$post_count      = apply_filters( 'rrp_post_number', 2 );
 		$args            = array(
 			'category__in'   => $post_categories,
 			'post__not_in'   => array( get_the_ID() ),
-			'posts_per_page' => apply_filters( 'rrp_post_number', 2 ),
+			'posts_per_page' => $post_count,
 			'orderby'        => 'rand',
 		);
 		$related_posts   = new \WP_Query( $args );
@@ -119,11 +121,12 @@ class RandomPosts {
 	/**
 	 * Return the related posts html.
 	 *
+	 * @param  string $content WordPress post body html content.
 	 * @param  object $related_posts WordPress query object.
 	 * @return string
 	 */
 	public function rrp_get_related_posts_html( $content, $related_posts ) {
-		$html = $content;
+		$html  = $content;
 		$html .= '<div class="rrp-wrap">';
 		$html .= '<div class="rrp-block-title">';
 		$html .= '<h2>' . __( 'Related Posts', 'rendom-post' ) . '</h2>';
