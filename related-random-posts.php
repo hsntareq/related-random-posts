@@ -6,7 +6,7 @@
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
  * License: GPLv2 or later
- * Text Domain: related-random-posts
+ * Text Domain: rrposts
  * Description: This plugin will show related random posts under each post.
  *
  * @package wp-plugin

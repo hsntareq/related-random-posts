@@ -1,4 +1,6 @@
-.rrp-wrap {}
+.rrp-wrap * {
+	box-sizing: border-box;
+}
 
 .rrp-block-title h2 {
 	margin-block-end: 20px;
@@ -14,8 +16,8 @@
 }
 
 .rrp-thumb {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -29,12 +31,11 @@
 .rrp-thumb img {
 	min-width: 100%;
 	height: auto;
-	/* border-top-left-radius: 20px; */
-	/* border-bottom-left-radius: 20px; */
 }
 
 .rrp-thumb a {
 	display: block;
+	flex: 1;
 	font-size: 0;
 }
 
@@ -42,15 +43,18 @@
 	flex: 1;
 	overflow: hidden;
 	padding-inline: 20px;
+	padding-block: 5px;
 }
 
 .rrp-item {
 	/* border-radius: 20px; */
-	border: 1px solid #efefef;
+	box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.5);
 	display: flex;
 	align-items: center;
 	margin-block-end: 20px;
 	position: relative;
+	border-radius: 20px;
+	overflow: hidden;
 }
 
 .rrp-item::after {
@@ -62,8 +66,7 @@
 	height: 100%;
 	background-color: #efefef;
 	z-index: -1;
-	/* border-top-right-radius: 20px; */
-	/* border-bottom-right-radius: 20px; */
+	border-radius: 20px;
 	transition: ease-in-out 500ms;
 }
 
@@ -82,10 +85,16 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-shadow: 0 0 0 #000;
 }
 
 .rrp-item .rrp-title a {
-	/* display: block; */
+	transition: all 300ms;
+	text-decoration: none;
+}
+
+.rrp-item:hover .rrp-title a {
+	text-decoration: underline;
 }
 
 
@@ -125,6 +134,7 @@
 
 .rrp-posts.grid .rrp-item .rrp-thumb {
 	width: 100%;
+	height: 200px;
 }
 
 .rrp-posts.grid .rrp-item .rrp-thumb .list {
