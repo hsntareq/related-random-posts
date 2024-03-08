@@ -19,6 +19,7 @@ class RandomPosts {
 	 * @var null
 	 */
 	private static $instance = null;
+	
 	/**
 	 * __construct
 	 *
@@ -45,7 +46,7 @@ class RandomPosts {
 	/**
 	 * Excerpt text callback.
 	 *
-	 * @param mixed $excerpt Excerpt text.
+	 * @param mixed $excerpt is the Excerpt text.
 	 *
 	 * @return string
 	 */
@@ -75,7 +76,7 @@ class RandomPosts {
 	/**
 	 * Custom excerpt length.
 	 *
-	 * @param mixed $length Excerpt length.
+	 * @param mixed $length is the Excerpt length.
 	 *
 	 * @return int
 	 */
@@ -87,12 +88,12 @@ class RandomPosts {
 	/**
 	 * Post thumbnail fallback html.
 	 *
-	 * @param mixed $html Post thumbnail html.
+	 * @param mixed $html is the post thumbnail html.
 	 *
 	 * @return [type]
 	 */
 	public function rrp_post_thumbnail_fallback( $html ) {
-		$no_image = apply_filters( 'rendom_post_no_image', RRP_PLUGIN_ASSETS . '/images/no-image.jpg' );
+		$no_image = esc_url( apply_filters( 'rendom_post_no_image', RRP_PLUGIN_ASSETS . '/images/no-image.jpg' ) );
 		$rrp_alt  = __( 'fallback thumbnail', 'rrposts' );
 		if ( empty( $html ) ) {
 			return "<img src='{$no_image}' alt='{$rrp_alt}' />";
@@ -103,7 +104,7 @@ class RandomPosts {
 	/**
 	 * Return the related posts object.
 	 *
-	 * @return [type]
+	 * @return object
 	 */
 	public function rrp_get_related_posts() {
 		$post_categories = wp_get_post_categories( get_the_ID(), array( 'fields' => 'ids' ) );
@@ -111,7 +112,7 @@ class RandomPosts {
 		$args            = array(
 			'category__in'   => $post_categories,
 			'post__not_in'   => array( get_the_ID() ),
-			'posts_per_page' => $post_count,
+			'posts_per_page' => esc_attr( $post_count ),
 			'orderby'        => 'rand',
 		);
 		$related_posts   = new \WP_Query( $args );
@@ -121,8 +122,8 @@ class RandomPosts {
 	/**
 	 * Return the related posts html.
 	 *
-	 * @param  string $content WordPress post body html content.
-	 * @param  object $related_posts WordPress query object.
+	 * @param  string $content is the WordPress post body html content.
+	 * @param  object $related_posts is the WordPress query object.
 	 * @return string
 	 */
 	public function rrp_get_related_posts_html( $content, $related_posts ) {
@@ -157,7 +158,7 @@ class RandomPosts {
 	/**
 	 * Adding content after post.
 	 *
-	 * @param  string $content Post content.
+	 * @param  string $content is the post content.
 	 * @return string
 	 */
 	public function rrp_add_content_after_post( $content ) {
