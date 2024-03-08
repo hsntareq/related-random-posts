@@ -42,8 +42,8 @@ class Options {
 	 */
 	public function rrp_add_admin_menu() {
 		add_options_page(
-			'Related Random Posts',
-			'Related Random Posts',
+			'Related Posts',
+			'Related Posts',
 			'manage_options',
 			'related-random-posts',
 			array( $this, 'rrp_options_page' )
