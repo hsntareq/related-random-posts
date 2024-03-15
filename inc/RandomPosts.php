@@ -111,6 +111,7 @@ class RandomPosts {
 		$post_count      = apply_filters( 'rrp_post_number', 2 );
 		$args            = array(
 			'category__in'   => $post_categories,
+			'post_status'    => 'publish',
 			'posts_per_page' => esc_attr( $post_count ),
 			'orderby'        => 'rand',
 		);
