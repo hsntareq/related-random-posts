@@ -19,7 +19,7 @@ class RandomPosts {
 	 * @var null
 	 */
 	private static $instance = null;
-	
+
 	/**
 	 * __construct
 	 *
@@ -107,11 +107,11 @@ class RandomPosts {
 	 * @return object
 	 */
 	public function rrp_get_related_posts() {
-		$post_categories = wp_get_post_categories( get_the_ID(), array( 'fields' => 'ids' ) );
+		$current_post    = get_the_ID();
+		$post_categories = wp_get_post_categories( $current_post, array( 'fields' => 'ids' ) );
 		$post_count      = apply_filters( 'rrp_post_number', 2 );
 		$args            = array(
 			'category__in'   => $post_categories,
-			'post__not_in'   => array( get_the_ID() ),
 			'posts_per_page' => esc_attr( $post_count ),
 			'orderby'        => 'rand',
 		);
@@ -126,8 +126,8 @@ class RandomPosts {
 	 * @param  object $related_posts is the WordPress query object.
 	 * @return string
 	 */
-	public function rrp_get_related_posts_html( $content, $related_posts ) {
-		$html  = $content;
+	public function rrp_get_related_posts_html( $content, $related_posts, $exclude = array() ) {
+		$html = $content;
 		$html .= '<div class="rrp-wrap">';
 		$html .= '<div class="rrp-block-title">';
 		$html .= '<h2>' . __( 'Related Posts', 'rendom-post' ) . '</h2>';
@@ -137,17 +137,19 @@ class RandomPosts {
 		if ( $related_posts->have_posts() ) {
 			while ( $related_posts->have_posts() ) {
 				$related_posts->the_post();
-				$html .= '<div class="rrp-item">';
-				$html .= '<div class="rrp-thumb"><a href="' . get_the_permalink() . '">';
-				$html .= '<figure>' . get_the_post_thumbnail( get_the_ID(), apply_filters( 'rendom_post_thumb_size', 'medium' ) ) . '</figure>';
-				$html .= '</a></div>';
-				$html .= '<div class="rrp-content">';
-				$html .= '<h5 class="rrp-title"><a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h5>';
-				$html .= '<div class="rrp-excerpt">';
-				$html .= apply_filters( 'rrp_excerpt_text', get_the_excerpt() );
-				$html .= '</div>';
-				$html .= '</div>';
-				$html .= '</div>';
+				if ( ! in_array( get_the_ID(), $exclude ) ) {
+					$html .= '<div class="rrp-item">';
+					$html .= '<div class="rrp-thumb"><a href="' . get_the_permalink() . '">';
+					$html .= '<figure>' . get_the_post_thumbnail( get_the_ID(), apply_filters( 'rendom_post_thumb_size', 'medium' ) ) . '</figure>';
+					$html .= '</a></div>';
+					$html .= '<div class="rrp-content">';
+					$html .= '<h5 class="rrp-title"><a href="' . get_the_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h5>';
+					$html .= '<div class="rrp-excerpt">';
+					$html .= apply_filters( 'rrp_excerpt_text', get_the_excerpt() );
+					$html .= '</div>';
+					$html .= '</div>';
+					$html .= '</div>';
+				}
 			}
 		}
 		$html .= '</div>';
@@ -164,7 +166,7 @@ class RandomPosts {
 	public function rrp_add_content_after_post( $content ) {
 		if ( is_single() ) {
 			$related_posts      = $this->rrp_get_related_posts();
-			$related_posts_html = $this->rrp_get_related_posts_html( $content, $related_posts );
+			$related_posts_html = $this->rrp_get_related_posts_html( $content, $related_posts, array( get_the_ID() ) );
 			return $related_posts_html;
 		}
 

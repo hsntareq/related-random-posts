@@ -1,3 +1,15 @@
+=== Related Random Posts ===
+Contributors: hsntareq
+Donate link: https://example.com/
+Tags: related, random
+Requires at least: 6.2
+Tested up to: 8.2
+Stable tag: 6.2
+Requires PHP: 8.2
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+
 # Related Random Posts
 
 This "Related Random Posts" plugin will allows you to display a list of random posts that are related to the current post on your WordPress website.
@@ -21,4 +33,4 @@ The plugin provides a settings page where you can configure various options, suc
 
 ## License
 
-This plugin is released under the [MIT License](https://opensource.org/licenses/MIT).
+This plugin is released under the [GPLv2 or later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
