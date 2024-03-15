@@ -45,6 +45,9 @@ class Enqueue {
 	 * @return void
 	 */
 	public function enqueue() {
+		if ( ! is_singular( 'post' ) ) {
+			return;
+		}
 		wp_enqueue_style( 'learn-plugin-style', RRP_PLUGIN_URL . '/assets/css/style.css', array(), RRP_PLUGIN_VERSION, 'all' );
 		wp_enqueue_script( 'learn-plugin-script', RRP_PLUGIN_URL . '/assets/js/main.js', array( 'jquery' ), RRP_PLUGIN_VERSION, true );
 	}

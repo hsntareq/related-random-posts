@@ -1,7 +1,6 @@
 <?php
 /**
  * Frontend Class
- * version 1.0
  *
  * @package wp-plugin
  * @since 1.0

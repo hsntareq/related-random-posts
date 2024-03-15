@@ -23,7 +23,7 @@ final class PluginMain {
 	 *
 	 * @var string
 	 */
-	const PLUGIN_VERSION = '1.0';
+	const PLUGIN_VERSION = '1.1';
 
 	/**
 	 * Instance of the PluginMain class

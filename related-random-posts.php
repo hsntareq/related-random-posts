@@ -2,7 +2,7 @@
 /**
  * Plugin Name: A Related Random Posts
  * Plugin URI: https://www.related-random-posts.com
- * Version: 1.0
+ * Version: 1.1
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
  * License: GPLv2 or later

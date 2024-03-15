@@ -148,6 +148,7 @@
 
 .rrp-wrap .rrp-posts.grid .rrp-content {
 	padding-block: 20px;
+	width: 100%;
 }
 
 .rrp-wrap .rrp-posts.grid .rrp-item .rrp-thumb .grid {
