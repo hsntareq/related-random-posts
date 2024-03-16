@@ -22,3 +22,6 @@ The plugin provides a settings page where you can configure various options, suc
 ## License
 
 This plugin is released under the [GPLv2 or later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+<!--
+zip -r related-random-posts.zip related-random-posts -x "*.git*" -x "*.DS_Store" -x "*.json" -x "*.lock" -x "*.md" -x "*.zip"
+-->
