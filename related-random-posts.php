@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: A Related Random Posts
+ * Plugin Name: Related Random Posts
  * Plugin URI: https://www.related-random-posts.com
  * Version: 1.1
  * Author: Hasan Tareq

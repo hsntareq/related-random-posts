@@ -1,4 +1,4 @@
-=== A Related Random Posts ===
+=== Related Random Posts ===
 Contributors: hsntareq
 Tags: related, random
 Requires at least: 6.2
