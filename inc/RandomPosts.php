@@ -93,7 +93,7 @@ class RandomPosts {
 	 */
 	public function rrp_post_thumbnail_fallback( $html ) {
 		$no_image = esc_url( apply_filters( 'rendom_post_no_image', RRP_PLUGIN_ASSETS . '/images/no-image.jpg' ) );
-		$rrp_alt  = __( 'fallback thumbnail', 'rrposts' );
+		$rrp_alt  = __( 'fallback thumbnail' );
 		if ( empty( $html ) ) {
 			return "<img src='{$no_image}' alt='{$rrp_alt}' />";
 		}
@@ -112,7 +112,7 @@ class RandomPosts {
 		$args            = array(
 			'category__in'   => $post_categories,
 			'post_status'    => 'publish',
-			'posts_per_page' => esc_attr( $post_count ),
+			'posts_per_page' => esc_attr( $post_count ), // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
 			'orderby'        => 'rand',
 		);
 		$related_posts   = new \WP_Query( $args );
@@ -124,10 +124,11 @@ class RandomPosts {
 	 *
 	 * @param  string $content is the WordPress post body html content.
 	 * @param  object $related_posts is the WordPress query object.
+	 * @param  array  $exclude is the array of post ids to exclude.
 	 * @return string
 	 */
 	public function rrp_get_related_posts_html( $content, $related_posts, $exclude = array() ) {
-		$html = $content;
+		$html  = $content;
 		$html .= '<div class="rrp-wrap">';
 		$html .= '<div class="rrp-block-title">';
 		$html .= '<h2>' . __( 'Related Posts', 'rendom-post' ) . '</h2>';
@@ -137,7 +138,7 @@ class RandomPosts {
 		if ( $related_posts->have_posts() ) {
 			while ( $related_posts->have_posts() ) {
 				$related_posts->the_post();
-				if ( ! in_array( get_the_ID(), $exclude ) ) {
+				if ( ! in_array( get_the_ID(), $exclude, true ) ) {
 					$html .= '<div class="rrp-item">';
 					$html .= '<div class="rrp-thumb"><a href="' . get_the_permalink() . '">';
 					$html .= '<figure>' . get_the_post_thumbnail( get_the_ID(), apply_filters( 'rendom_post_thumb_size', 'medium' ) ) . '</figure>';
